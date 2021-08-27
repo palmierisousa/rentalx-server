@@ -9,19 +9,14 @@ class CreateUserController {
 
     const createUserUseCase = container.resolve(CreateUserUseCase);
 
-    // FIXME improve error catch
-    try {
-      await createUserUseCase.execute({
-        name,
-        email,
-        password,
-        driver_license,
-      });
+    await createUserUseCase.execute({
+      name,
+      email,
+      password,
+      driver_license,
+    });
 
-      return response.status(201).send();
-    } catch (error) {
-      return response.status(500).send({ error: error.message });
-    }
+    return response.status(201).send();
   }
 }
 

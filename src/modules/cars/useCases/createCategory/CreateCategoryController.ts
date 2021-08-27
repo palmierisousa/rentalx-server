@@ -9,14 +9,10 @@ class CreateCategoryController {
     const { name, description } = request.body;
 
     const createCategoryUseCase = container.resolve(CreateCategoryUseCase);
-    // FIXME improve error catch
-    try {
-      await createCategoryUseCase.execute({ name, description });
 
-      return response.status(201).send();
-    } catch (error) {
-      return response.status(500).send({ error: error.message });
-    }
+    await createCategoryUseCase.execute({ name, description });
+
+    return response.status(201).send();
   }
 }
 

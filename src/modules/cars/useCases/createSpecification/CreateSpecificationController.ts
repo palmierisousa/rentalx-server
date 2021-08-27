@@ -11,14 +11,9 @@ class CreateSpecificationController {
       CreateSpecificationUseCase
     );
 
-    // FIXME improve error catch
-    try {
-      await createSpecificationUseCase.execute({ name, description });
+    await createSpecificationUseCase.execute({ name, description });
 
-      return response.status(201).send();
-    } catch (error) {
-      return response.status(500).send({ error: error.message });
-    }
+    return response.status(201).send();
   }
 }
 
