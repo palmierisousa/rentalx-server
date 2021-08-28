@@ -2,6 +2,7 @@ import csvParse from "csv-parse";
 import fs from "fs";
 import { inject, injectable } from "tsyringe";
 
+import { deleteFile } from "../../../../utils/file";
 import { ICategoriesRepository } from "../../repositories/ICategoriesRepository";
 
 interface IImportCategory {
@@ -34,8 +35,8 @@ class ImportCategoryUseCase {
             description,
           });
         })
-        .on("end", () => {
-          fs.promises.unlink(file.path);
+        .on("end", async () => {
+          await deleteFile(file.path);
           resolve(categories);
         })
         .on("error", (err) => {
@@ -50,6 +51,7 @@ class ImportCategoryUseCase {
     categories.map(async (category) => {
       const { name, description } = category;
 
+      // TODO update category if it exists
       const existCategory = await this.categoriesRepository.findByName(name);
 
       if (!existCategory) {
