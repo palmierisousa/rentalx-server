@@ -9,7 +9,6 @@ class ImportCategoryController {
 
     const importCategoryUseCase = container.resolve(ImportCategoryUseCase);
 
-    // FIXME errors are not being handled
     await importCategoryUseCase.execute(file);
 
     return response.status(201).send();

@@ -2,7 +2,8 @@ import express, { Request, Response, NextFunction } from "express";
 import "express-async-errors";
 import swaggerUI from "swagger-ui-express";
 
-import { AppError } from "./errors/AppError";
+import { AppError } from "@errors/AppError";
+
 import { router } from "./routes";
 import swaggerFile from "./swagger.json";
 

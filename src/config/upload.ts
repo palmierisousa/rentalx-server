@@ -3,7 +3,7 @@ import multer from "multer";
 import { resolve } from "path";
 
 export default {
-  // TODO Fix return type
+  // FIXME Fix return type
   upload(folder: string) {
     return {
       storage: multer.diskStorage({
