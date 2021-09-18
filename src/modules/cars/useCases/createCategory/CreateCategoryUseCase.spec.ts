@@ -20,14 +20,10 @@ describe("Create category", () => {
       description: "Category description Test",
     };
 
-    await createCategoryUseCase.execute({
+    const categoryCreated = await createCategoryUseCase.execute({
       name: category.name,
       description: category.description,
     });
-
-    const categoryCreated = await categoriesRepositoryInMemory.findByName(
-      category.name
-    );
 
     expect(categoryCreated).toHaveProperty("id");
   });

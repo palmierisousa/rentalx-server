@@ -3,14 +3,14 @@ import "express-async-errors";
 import swaggerUI from "swagger-ui-express";
 
 import { AppError } from "@shared/errors/AppError";
+import createConnection from "@shared/infra/typeorm";
 
 import swaggerFile from "../../../swagger.json";
 import { router } from "./routes";
 
-import "@shared/infra/typeorm";
-
 import "../../container";
 
+createConnection("database_rentalx");
 const app = express();
 
 app.use(express.json());
